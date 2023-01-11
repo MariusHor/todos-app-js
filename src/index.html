@@ -7,6 +7,39 @@
     <title>Todos App Vanilla JS</title>
   </head>
   <body>
-    <div id="app"></div>
+    <div id="app">
+      <div class="header">
+        <h1 class="header__logo">TODO</h1>
+        <button class="button button--theme" aria-label="switch-theme"></button>
+      </div>
+      <form class="form box">
+        <input class="checkbox" type="checkbox" id="form-checkbox" />
+        <label for="form-checkbox"></label>
+        <label class="sr-only" for="add-item"></label>
+        <input
+          class="form__text-input"
+          type="text"
+          autocomplete="off"
+          id="add-item"
+          placeholder="Create a new Todo..."
+          name="todo"
+        />
+        <button class="button button--submit" type="submit" aria-label="add a new todo"></button>
+      </form>
+      <div class="content box">
+        <ul class="list"></ul>
+        <div class="content__bottom">
+          <span class="content__counter">0 items left</span>
+          <div class="content__filters">
+            <button class="button button--current" data-filter="all">All</button>
+            <button class="button" data-filter="active">Active</button>
+            <button class="button" data-filter="completed">Completed</button>
+          </div>
+          <button class="button button--clear-completed" data-filter="completed">
+            Clear completed
+          </button>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

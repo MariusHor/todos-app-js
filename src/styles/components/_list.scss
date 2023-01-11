@@ -1,0 +1,38 @@
+@use '../abstracts' as *;
+
+.list {
+  @extend %flex-col-center;
+  color: $clr-light-grayish-blue;
+
+  &__empty {
+    text-align: center;
+    padding: 1.1rem 0;
+    border-bottom: solid 1px $clr-darker-grayish-blue;
+    font-size: 0.875rem;
+  }
+
+  &__item {
+    @extend %grid-center-y;
+    grid-template-columns: 1fr 10fr 1fr;
+    gap: 0.5rem;
+    padding: 1.1rem;
+    border-bottom: solid 1px $clr-darker-grayish-blue;
+  }
+
+  &__todo {
+    padding: 0.5rem 0;
+
+    &:focus-visible {
+      outline: none;
+      background: $clr-light-grayish-blue;
+      padding: 0.5rem;
+      border-radius: 0.3rem;
+      color: black;
+    }
+  }
+
+  &__todo--done {
+    text-decoration: line-through;
+    color: $clr-dark-grayish-blue;
+  }
+}

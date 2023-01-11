@@ -1,2 +1,39 @@
 @use '../abstracts' as *;
 
+body {
+  min-height: 100%;
+  transition: background 0.2s ease-in-out;
+  background: url(/src/assets/bg-mobile-dark.jpg), $clr-very-dark-blue;
+  background-repeat: no-repeat;
+  background-size: contain;
+  @include breakpoint(small) {
+    background: url(/src/assets/bg-desktop-dark.jpg), $clr-very-dark-blue;
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+
+  &--light-theme {
+    background: url(/src/assets/bg-mobile-light.jpg), $clr-very-light-grayish-blue;
+    background-repeat: no-repeat;
+    background-size: contain;
+
+    @include breakpoint(small) {
+      background: url(/src/assets/bg-desktop-light.jpg), $clr-very-light-grayish-blue;
+      background-repeat: no-repeat;
+      background-size: contain;
+    }
+  }
+}
+
+#app {
+  padding: 4rem 1rem;
+  margin: 0 auto;
+  max-width: 540px;
+}
+
+.box {
+  border-radius: 0.3rem;
+  overflow: hidden;
+  background: $clr-dark-desaturated-blue;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+}

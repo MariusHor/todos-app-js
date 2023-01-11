@@ -1,0 +1,10 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+
+  &__logo {
+    color: #fff;
+    letter-spacing: 0.7rem;
+  }
+}
