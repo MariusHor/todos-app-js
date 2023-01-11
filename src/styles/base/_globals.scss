@@ -18,10 +18,10 @@
 body {
   height: 100%;
   font-family: $ff-primary;
-  font-size: $fs-small;
+  font-size: $fs-medium;
   color: $clr-very-dark-grayish-blue;
   @include breakpoint(small) {
-    font-size: $fs-medium;
+    font-size: $fs-large;
   }
   @include breakpoint(xlarge) {
     font-size: $fs-large;

@@ -12,6 +12,9 @@
     color: $clr-very-light-gray;
     border: none;
     outline: none;
-    font-size: initial;
+    font-size: small;
+    @include breakpoint(small) {
+      font-size: medium;
+    }
   }
 }
