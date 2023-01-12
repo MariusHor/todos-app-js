@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="assets/favicon-16x16.png" type="image/png" />
     <title>Todos App Vanilla JS</title>
+    <script src="https://kit.fontawesome.com/d73036c961.js" crossorigin="anonymous"></script>
   </head>
   <body>
     <div id="app">
@@ -13,12 +14,13 @@
         <h1 class="header__logo">TODO</h1>
         <button class="button button--theme" aria-label="switch-theme"></button>
       </div>
-      <form class="form box">
-        <input class="checkbox" type="checkbox" id="form-checkbox" />
+      <form class="form box" data-todo="form">
+        <input class="checkbox" data-todo="form-checkbox" type="checkbox" id="form-checkbox" />
         <label for="form-checkbox"></label>
         <label class="sr-only" for="add-item"></label>
         <input
           class="form__text-input"
+          data-todo="user-input"
           type="text"
           autocomplete="off"
           id="add-item"

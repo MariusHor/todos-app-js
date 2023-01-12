@@ -1,0 +1,67 @@
+@use '../abstracts' as *;
+
+.modal {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  &__overlay {
+    z-index: 5;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(3px);
+    transition: transform 0.3s cubic-bezier(0.465, 0.183, 0.153, 0.946), opacity 0.2s ease-in;
+  }
+  &__box {
+    z-index: 10;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    height: 14rem;
+    width: inherit;
+    max-width: 30rem;
+    margin: 1rem;
+    opacity: 0;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.3);
+    transform: translateY(100%) rotateX(90deg);
+    transition: transform 0.5s cubic-bezier(0.465, 0.183, 0.153, 0.946),
+      opacity 0.4s cubic-bezier(0.465, 0.183, 0.153, 0.946);
+  }
+  &__message {
+    grid-column: 2;
+    align-self: center;
+    text-align: center;
+    font-size: 1rem;
+    @include breakpoint(small) {
+      font-size: 1.2rem;
+    }
+  }
+  &__close {
+    align-self: baseline;
+    justify-self: end;
+    width: fit-content;
+    margin: 2rem;
+
+    .fa-xmark {
+      font-size: 1.4rem;
+      @include breakpoint(small) {
+        font-size: 1.7rem;
+      }
+    }
+  }
+}
+
+.visible {
+  opacity: 1;
+  transform: translateY(0%) rotateX(0deg);
+}
