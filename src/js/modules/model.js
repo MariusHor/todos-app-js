@@ -2,20 +2,24 @@ import { generateId } from './utils/helpers';
 
 class Model {
   constructor() {
-    this.localStorageKey = 'todos';
+    this.localStorageKey = 'state';
     this.state = {
       todos: [],
       filter: '',
     };
   }
 
-  #saveTodos() {
-    localStorage.setItem(this.localStorageKey, JSON.stringify(this.state.todos));
+  #save() {
+    localStorage.setItem(this.localStorageKey, JSON.stringify(this.state));
   }
 
-  getTodos(handler) {
-    this.state.todos = JSON.parse(localStorage.getItem(this.localStorageKey)) || [];
-    handler(this.state.todos);
+  getState(handler) {
+    this.state = JSON.parse(localStorage.getItem(this.localStorageKey)) || {};
+    handler(this.state);
+  }
+
+  getFilter() {
+    this.state.filter = JSON.parse(localStorage.getItem(this.localStorageKey)).filter || [];
   }
 
   addTodo(todo) {
@@ -24,12 +28,27 @@ class Model {
       id: `id_${generateId()}`,
     };
     this.state.todos.push(newTodo);
-    this.#saveTodos();
+    this.#save();
   }
 
   deleteTodo(id) {
     this.state.todos = this.state.todos.filter(todo => todo.id !== id);
-    this.#saveTodos();
+    this.#save();
+  }
+
+  getActiveTodos() {
+    this.active = this.state.todos.filter(todo => !todo.checked);
+    return this.active;
+  }
+
+  getCompletedTodos() {
+    this.completed = this.state.todos.filter(todo => todo.checked);
+    return this.completed;
+  }
+
+  setFilter(filter) {
+    this.state.filter = filter;
+    this.#save();
   }
 }
 

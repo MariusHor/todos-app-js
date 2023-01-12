@@ -43,7 +43,7 @@ class Modal extends View {
 
   handleEvents() {
     this.parentEl.addEventListener('click', event => {
-      const closeBtn = event.target.closest('[data-modal="close-modal');
+      const closeBtn = event.target.closest('[data-modal="close-modal"');
       if (!closeBtn) return;
       Modal.#removeModal();
       this.focusInput();
