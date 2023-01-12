@@ -26,7 +26,7 @@ class BottomView extends View {
 
   bindClearCompleted(handler) {
     this.parentEl.addEventListener('click', event => {
-      const clearBtn = event.target.closest('[data-todo="clear"]');
+      const clearBtn = event.target.closest('[data-remove="all"]');
       if (!clearBtn) return;
       handler();
     });

@@ -5,7 +5,7 @@ class AppView extends View {
   constructor() {
     super();
     this.parentEl = $el('.root');
-    this.themeBtn = $el('.button--theme');
+    this.themeBtn = $el('[data-theme="switch"]');
   }
 
   switchTheme() {

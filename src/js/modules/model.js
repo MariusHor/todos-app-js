@@ -5,7 +5,7 @@ class Model {
     this.localStorageKey = 'state';
     this.state = {
       todos: [],
-      filter: '',
+      filter: 'all',
     };
   }
 
@@ -14,17 +14,16 @@ class Model {
   }
 
   getState(handler) {
-    this.state = JSON.parse(localStorage.getItem(this.localStorageKey)) || {};
+    this.state = JSON.parse(localStorage.getItem(this.localStorageKey)) || {
+      todos: [],
+      filter: 'all',
+    };
     handler(this.state);
   }
 
   setFilter(filter) {
     this.state.filter = filter;
     this.#save();
-  }
-
-  getFilter() {
-    this.state.filter = JSON.parse(localStorage.getItem(this.localStorageKey)).filter || [];
   }
 
   addTodo(todo) {
@@ -44,6 +43,13 @@ class Model {
   toggleTodo(id) {
     this.state.todos = this.state.todos.map(todo =>
       todo.id === id ? { ...todo, checked: !todo.checked } : todo,
+    );
+    this.#save();
+  }
+
+  editTodo(id, text) {
+    this.state.todos = this.state.todos.map(todo =>
+      todo.id === id ? { ...todo, title: text } : todo,
     );
     this.#save();
   }

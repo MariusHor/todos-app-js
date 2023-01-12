@@ -42,6 +42,11 @@ export default class Controller {
     this.render(this.filter);
   };
 
+  controlEditTodo = (id, text) => {
+    this.model.editTodo(id, text);
+    this.render(this.filter);
+  };
+
   controlModal = message => {
     this.modalView.showModal(message);
     this.modalView.handleEvents();
@@ -86,6 +91,7 @@ export default class Controller {
     this.inputView.bindAddTodo(this.controlAddTodo);
     this.todoView.bindDeleteTodo(this.controlDeleteTodo);
     this.todoView.bindCheckTodo(this.controlCheckTodo);
+    this.todoView.bindEditTodo(this.controlEditTodo);
     this.bottomView.bindFilters(this.controlFilters);
     this.bottomView.bindClearCompleted(this.controlClearCompleted);
   }

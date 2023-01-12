@@ -4,7 +4,7 @@ import View from './View';
 class InputView extends View {
   constructor() {
     super();
-    this.parentEl = $el('[data-todo="form"]');
+    this.parentEl = $el('.form');
     this.formCheckbox = $el('[data-todo="form-checkbox"]');
   }
 

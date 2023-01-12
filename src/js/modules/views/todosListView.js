@@ -18,12 +18,16 @@ class TodosListView extends View {
             <input 
               class="checkbox" 
               type="checkbox" 
+              data-toggle="todo"
               id="checkbox-${todo.id}" 
               ${todo.checked ? 'checked' : ''}
             >
-            <label for="checkbox-${todo.id}"></label>
-            <span class="list__todo">${todo.title}</span>
-            <button class="button button--remove-todo" aria-label="delete todo">
+            <label for="checkbox-${todo.id}" data-todo="checkbox"></label>
+            <span 
+              class="list__todo ${todo.checked ? 'list__todo--done' : ''}" 
+              data-edit="todo">${todo.title}
+            </span>
+            <button class="button button--remove-todo" data-remove="todo" aria-label="delete todo">
                 <i class="fa-solid fa-xmark"></i>
             </button>
         </li>
