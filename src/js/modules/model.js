@@ -1,3 +1,5 @@
+import { generateId } from './utils/helpers';
+
 class Model {
   constructor() {
     this.localStorageKey = 'todos';
@@ -8,19 +10,21 @@ class Model {
   }
 
   #save() {
-    localStorage.setItem(this.localStorageKey, this.state);
+    localStorage.setItem(this.localStorageKey, JSON.stringify(this.state.todos));
   }
 
   addTodo(todo) {
-    this.state.todos.push({
-      title: todo.title,
-      checked: todo.checked,
-    });
+    const newTodo = {
+      ...todo,
+      id: `id_${generateId()}`,
+    };
+    this.state.todos.push(newTodo);
     this.#save();
   }
 
-  getTodos() {
-    this.state = JSON.parse(localStorage.getItem(this.localStorageKey)) || [];
+  getTodos(handler) {
+    this.state.todos = JSON.parse(localStorage.getItem(this.localStorageKey)) || [];
+    handler(this.state.todos);
   }
 }
 

@@ -4,7 +4,12 @@ export default class Controller {
     this.views = views;
     this.inputView = this.views.inputView;
     this.modalView = this.views.modalView;
+    this.todosListView = this.views.todosListView;
   }
+
+  controlGetTodos = data => {
+    this.todosListView.render(data);
+  };
 
   controlAddTodo = () => {
     try {
@@ -14,8 +19,11 @@ export default class Controller {
       if (todo.title === '') {
         throw new Error('Todo cannot be empty!');
       } else {
-        // 2. If no error, we send the new todo to the model, to store it
+        // 2. If no error, we send the new todo to the Model, to store it
         this.model.addTodo(todo);
+
+        // 3. Rerendering all todos inside the Todos List View
+        this.todosListView.render(this.model.state.todos);
       }
     } catch (error) {
       this.inputView.renderInputError(error);
@@ -27,6 +35,7 @@ export default class Controller {
   };
 
   init() {
+    this.model.getTodos(this.controlGetTodos);
     this.inputView.bindAddTodo(this.controlAddTodo);
     this.modalView.bindCloseModal(this.controlInputFocus);
   }

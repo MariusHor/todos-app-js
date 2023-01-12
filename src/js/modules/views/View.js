@@ -2,10 +2,11 @@ import iconCross from '../../../assets/icon-cross.svg';
 
 class View {
   constructor() {
-    this.app = document.querySelector('#app');
+    this.data = [];
+    this.parentEl = document.querySelector('#app');
   }
 
-  #clear() {
+  clear() {
     this.parentEl.innerHTML = '';
   }
 
@@ -20,7 +21,7 @@ class View {
           <p>${error.message}</p>
       </div>
     `;
-    this.#clear();
+    this.clear();
     this.parentEl.insertAdjacentHTML('afterbegin', markup);
   }
 }

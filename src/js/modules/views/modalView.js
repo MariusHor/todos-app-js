@@ -7,7 +7,7 @@ class Modal extends View {
     this.parentEl = $el('#app');
   }
 
-  static #generateModalMarkup(message) {
+  static #generateMarkup(message) {
     const markup = `
         <div class="modal">
             <div class="modal__overlay"></div>
@@ -23,7 +23,7 @@ class Modal extends View {
   }
 
   async showModal(message) {
-    const markup = Modal.#generateModalMarkup(message);
+    const markup = Modal.#generateMarkup(message);
     this.parentEl.insertAdjacentHTML('beforeend', markup);
 
     await asyncTimeout(300);
