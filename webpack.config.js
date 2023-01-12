@@ -71,7 +71,7 @@ module.exports = {
       {
         test: /\.(png|svg|jpg|jpeg|ico|gif|webp)$/i, // For images
         type: 'asset/resource',
-        use: [
+        /* use: [
           {
             loader: 'image-webpack-loader',
             options: {
@@ -80,12 +80,12 @@ module.exports = {
               },
             },
           },
-        ],
-        parser: {
+        ], */
+        /* parser: {
           dataUrlCondition: {
             maxSize: 10 * 1024, // Inline anything under 10kb
           },
-        },
+        }, */
         generator: {
           filename: 'assets/[hash][ext][query]',
         },

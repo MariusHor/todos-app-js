@@ -1,5 +1,7 @@
 {
-  "rules": {},
+  "rules": {
+    "class-methods-use-this": "off"
+  },
   "env": {
     "es6": true,
     "browser": true
