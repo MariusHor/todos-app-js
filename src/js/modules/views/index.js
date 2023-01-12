@@ -3,6 +3,7 @@ import modalView from './modalView';
 import todosListView from './todosListView';
 import todoView from './todoView';
 import bottomView from './bottomView';
+import appView from './appView';
 
 export default {
   inputView,
@@ -10,4 +11,5 @@ export default {
   todosListView,
   todoView,
   bottomView,
+  appView,
 };

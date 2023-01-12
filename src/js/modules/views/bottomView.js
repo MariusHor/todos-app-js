@@ -6,6 +6,7 @@ class BottomView extends View {
     super();
     this.parentEl = $el('.content__bottom');
     this.filters = $$el('.filter');
+    this.counter = $el('.content__counter');
   }
 
   setFilterActive(filter) {
@@ -21,6 +22,18 @@ class BottomView extends View {
       this.setFilterActive(filter, element);
       handler(filter);
     });
+  }
+
+  bindClearCompleted(handler) {
+    this.parentEl.addEventListener('click', event => {
+      const clearBtn = event.target.closest('[data-todo="clear"]');
+      if (!clearBtn) return;
+      handler();
+    });
+  }
+
+  renderCounter(data) {
+    this.counter.textContent = `${data.length} todos left`;
   }
 }
 

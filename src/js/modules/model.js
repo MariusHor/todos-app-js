@@ -46,6 +46,11 @@ class Model {
     return this.completed;
   }
 
+  removeCompleted() {
+    this.state.todos = this.state.todos.filter(todo => !todo.checked);
+    this.#save();
+  }
+
   setFilter(filter) {
     this.state.filter = filter;
     this.#save();

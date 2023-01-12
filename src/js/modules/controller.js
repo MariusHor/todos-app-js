@@ -8,10 +8,11 @@ export default class Controller {
     this.todosListView = this.views.todosListView;
     this.todoView = this.views.todoView;
     this.bottomView = this.views.bottomView;
+    this.appView = this.views.appView;
     this.filter = '';
   }
 
-  controlGetState = state => {
+  controlSetState = state => {
     const { filter } = state;
     this.filter = filter;
     this.render(this.filter);
@@ -58,15 +59,28 @@ export default class Controller {
     }
   }
 
+  controlClearCompleted = () => {
+    this.model.removeCompleted();
+    this.render(this.filter);
+  };
+
+  handleCounter = () => {
+    const activeTodos = this.model.getActiveTodos();
+    this.bottomView.renderCounter(activeTodos);
+  };
+
   render(filter) {
     const data = this.controlFilterData(filter);
     this.todosListView.render(data, filter);
+    this.handleCounter();
   }
 
   init() {
-    this.model.getState(this.controlGetState);
+    this.appView.switchTheme();
+    this.model.getState(this.controlSetState);
     this.inputView.bindAddTodo(this.controlAddTodo);
     this.todoView.bindDeleteTodo(this.controlDeleteTodo);
     this.bottomView.bindFilters(this.controlFilters);
+    this.bottomView.bindClearCompleted(this.controlClearCompleted);
   }
 }
