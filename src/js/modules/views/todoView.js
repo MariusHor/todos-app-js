@@ -15,6 +15,15 @@ class TodoView extends View {
       handler(id);
     });
   }
+
+  bindCheckTodo(handler) {
+    this.parentEl.addEventListener('click', event => {
+      const checkbox = event.target.closest('label');
+      if (!checkbox) return;
+      const { id } = checkbox.parentElement.dataset;
+      handler(id);
+    });
+  }
 }
 
 export default new TodoView();

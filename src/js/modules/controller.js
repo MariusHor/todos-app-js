@@ -37,6 +37,11 @@ export default class Controller {
     this.render(this.filter);
   };
 
+  controlCheckTodo = id => {
+    this.model.toggleTodo(id);
+    this.render(this.filter);
+  };
+
   controlModal = message => {
     this.modalView.showModal(message);
     this.modalView.handleEvents();
@@ -80,6 +85,7 @@ export default class Controller {
     this.model.getState(this.controlSetState);
     this.inputView.bindAddTodo(this.controlAddTodo);
     this.todoView.bindDeleteTodo(this.controlDeleteTodo);
+    this.todoView.bindCheckTodo(this.controlCheckTodo);
     this.bottomView.bindFilters(this.controlFilters);
     this.bottomView.bindClearCompleted(this.controlClearCompleted);
   }

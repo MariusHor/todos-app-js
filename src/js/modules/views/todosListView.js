@@ -15,7 +15,12 @@ class TodosListView extends View {
   static #generateMarkup(todo) {
     return `
         <li class="list__item" data-id="${todo.id}">
-            <input class="checkbox" type="checkbox" id="checkbox-${todo.id}">
+            <input 
+              class="checkbox" 
+              type="checkbox" 
+              id="checkbox-${todo.id}" 
+              ${todo.checked ? 'checked' : ''}
+            >
             <label for="checkbox-${todo.id}"></label>
             <span class="list__todo">${todo.title}</span>
             <button class="button button--remove-todo" aria-label="delete todo">

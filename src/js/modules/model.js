@@ -18,6 +18,11 @@ class Model {
     handler(this.state);
   }
 
+  setFilter(filter) {
+    this.state.filter = filter;
+    this.#save();
+  }
+
   getFilter() {
     this.state.filter = JSON.parse(localStorage.getItem(this.localStorageKey)).filter || [];
   }
@@ -36,6 +41,13 @@ class Model {
     this.#save();
   }
 
+  toggleTodo(id) {
+    this.state.todos = this.state.todos.map(todo =>
+      todo.id === id ? { ...todo, checked: !todo.checked } : todo,
+    );
+    this.#save();
+  }
+
   getActiveTodos() {
     this.active = this.state.todos.filter(todo => !todo.checked);
     return this.active;
@@ -48,11 +60,6 @@ class Model {
 
   removeCompleted() {
     this.state.todos = this.state.todos.filter(todo => !todo.checked);
-    this.#save();
-  }
-
-  setFilter(filter) {
-    this.state.filter = filter;
     this.#save();
   }
 }
