@@ -5,38 +5,39 @@ export default class Controller {
     this.inputView = this.views.inputView;
     this.modalView = this.views.modalView;
     this.todosListView = this.views.todosListView;
+    this.todoView = this.views.todoView;
   }
 
   controlGetTodos = data => {
-    this.todosListView.render(data);
+    this.todosListView.render(data, 'completed');
   };
 
-  controlAddTodo = () => {
+  controlAddTodo = todo => {
     try {
-      // 1. Getting the new todo from the user input
-      const todo = this.inputView.getNewTodo();
-
       if (todo.title === '') {
         throw new Error('Todo cannot be empty!');
       } else {
-        // 2. If no error, we send the new todo to the Model, to store it
         this.model.addTodo(todo);
-
-        // 3. Rerendering all todos inside the Todos List View
-        this.todosListView.render(this.model.state.todos);
+        this.todosListView.render(this.model.state.todos, 'active');
       }
     } catch (error) {
-      this.inputView.renderInputError(error);
+      this.controlModal(error.message);
     }
   };
 
-  controlInputFocus = () => {
-    this.inputView.focusInput();
+  controlModal = data => {
+    this.modalView.showModal(data);
+    this.modalView.handleEvents();
+  };
+
+  controlDeleteTodo = id => {
+    this.model.deleteTodo(id);
+    this.todosListView.render(this.model.state.todos, 'active');
   };
 
   init() {
     this.model.getTodos(this.controlGetTodos);
     this.inputView.bindAddTodo(this.controlAddTodo);
-    this.modalView.bindCloseModal(this.controlInputFocus);
+    this.todoView.bindDeleteTodo(this.controlDeleteTodo);
   }
 }

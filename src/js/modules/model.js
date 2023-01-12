@@ -9,8 +9,13 @@ class Model {
     };
   }
 
-  #save() {
+  #saveTodos() {
     localStorage.setItem(this.localStorageKey, JSON.stringify(this.state.todos));
+  }
+
+  getTodos(handler) {
+    this.state.todos = JSON.parse(localStorage.getItem(this.localStorageKey)) || [];
+    handler(this.state.todos);
   }
 
   addTodo(todo) {
@@ -19,12 +24,12 @@ class Model {
       id: `id_${generateId()}`,
     };
     this.state.todos.push(newTodo);
-    this.#save();
+    this.#saveTodos();
   }
 
-  getTodos(handler) {
-    this.state.todos = JSON.parse(localStorage.getItem(this.localStorageKey)) || [];
-    handler(this.state.todos);
+  deleteTodo(id) {
+    this.state.todos = this.state.todos.filter(todo => todo.id !== id);
+    this.#saveTodos();
   }
 }
 

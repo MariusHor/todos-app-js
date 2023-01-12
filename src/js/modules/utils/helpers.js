@@ -5,6 +5,8 @@ export const asyncTimeout = duration =>
 
 export const $el = selector => document.querySelector(selector);
 
+export const $$el = selector => document.querySelectorAll(selector);
+
 export const formatInput = string => string.toLowerCase().trim();
 
 export const generateId = () => Math.floor(Math.random() * Date.now());

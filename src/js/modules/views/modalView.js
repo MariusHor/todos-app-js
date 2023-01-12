@@ -32,7 +32,7 @@ class Modal extends View {
     $el('.modal__overlay').classList.add('visible');
   }
 
-  static async #closeModal() {
+  static async #removeModal() {
     $el('.modal__overlay').classList.remove('visible');
     $el('.modal__box').classList.remove('visible');
 
@@ -41,24 +41,23 @@ class Modal extends View {
     if ($el('.modal')) $el('.modal').remove();
   }
 
-  bindCloseModal(handler) {
+  handleEvents() {
     this.parentEl.addEventListener('click', event => {
       const closeBtn = event.target.closest('[data-modal="close-modal');
-      if (closeBtn) {
-        Modal.#closeModal();
-        handler();
-      }
+      if (!closeBtn) return;
+      Modal.#removeModal();
+      this.focusInput();
     });
     document.addEventListener('click', event => {
       if (event.target.matches('.modal__overlay')) {
-        Modal.#closeModal();
-        handler();
+        Modal.#removeModal();
+        this.focusInput();
       }
     });
     document.addEventListener('keydown', event => {
       if (event.key === 'Escape') {
-        Modal.#closeModal();
-        handler();
+        Modal.#removeModal();
+        this.focusInput();
       }
     });
   }

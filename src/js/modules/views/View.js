@@ -1,25 +1,25 @@
-import iconCross from '../../../assets/icon-cross.svg';
+import { $el } from '../utils/helpers';
 
 class View {
   constructor() {
-    this.data = [];
     this.parentEl = document.querySelector('#app');
+    this.input = $el('[data-todo="user-input"]');
+    this.data = [];
+  }
+
+  focusInput() {
+    this.input.focus();
   }
 
   clear() {
     this.parentEl.innerHTML = '';
   }
 
-  renderError(error) {
+  renderError(message) {
     const markup = `
-      <div class="error">
-          <div>
-          <svg>
-              <use href="${iconCross}#icon-alert-triangle"></use>
-          </svg>
-          </div>
-          <p>${error.message}</p>
-      </div>
+      <li class="list__empty">
+          <p>${message}</p>
+      </li>
     `;
     this.clear();
     this.parentEl.insertAdjacentHTML('afterbegin', markup);
