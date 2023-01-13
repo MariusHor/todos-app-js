@@ -18,9 +18,10 @@ class InputView extends View {
   bindAddTodo(handler) {
     this.parentEl.addEventListener('submit', event => {
       event.preventDefault();
-      this.focusInput();
       const todo = this.#getNewTodo();
       handler(todo);
+      if (!todo.length) return;
+      this.focusInput();
     });
   }
 }

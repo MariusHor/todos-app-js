@@ -21,7 +21,7 @@ export default class Controller {
 
   controlAddTodo = todo => {
     try {
-      if (todo.title === '') {
+      if (!todo.title.length) {
         throw new Error('Todo cannot be empty!');
       } else {
         this.model.addTodo(todo);
