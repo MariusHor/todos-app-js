@@ -28,19 +28,18 @@ class TodoView extends View {
   bindEditTodo(handler) {
     this.parentEl.addEventListener('dblclick', event => {
       const textEl = event.target.closest('[data-edit="todo"]');
-      if (textEl) {
+      if (textEl && !textEl.classList.contains('list__todo--done')) {
         textEl.contentEditable = true;
       }
     });
     this.parentEl.addEventListener('focusout', event => {
       const textEl = event.target.closest('[data-edit="todo"]');
       if (textEl) {
-        textEl.contentEditable = true;
-        const data = textEl.innerText;
+        textEl.contentEditable = false;
+        const data = textEl.innerText.toLowerCase().trim();
         const { id } = textEl.parentElement.dataset;
         handler(id, data);
       }
-      textEl.contentEditable = false;
     });
   }
 }
