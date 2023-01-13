@@ -39,19 +39,14 @@
   }
 
   &--remove-todo {
-    background-image: url(/src/assets/icon-cross.svg);
-    height: 1.25rem;
-    width: 1.25rem;
-    justify-self: end;
+    display: flex;
+    justify-content: flex-end;
+    font-size: 1.7rem;
+    color: $clr-dark-grayish-blue;
 
     &:hover,
     &:focus {
-      mix-blend-mode: exclusion;
-      opacity: 1;
-    }
-
-    @include breakpoint(medium) {
-      opacity: 0;
+      color: $clr-light-grayish-blue-hover;
     }
   }
 

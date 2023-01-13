@@ -1,24 +1,26 @@
 @use '../abstracts' as *;
 
-body {
+.root {
   min-height: 100%;
   transition: background 0.2s ease-in-out;
-  background: url(/src/assets/bg-mobile-dark.jpg), $clr-very-dark-blue;
-  background-repeat: no-repeat;
-  background-size: contain;
-  @include breakpoint(small) {
-    background: url(/src/assets/bg-desktop-dark.jpg), $clr-very-dark-blue;
-    background-repeat: no-repeat;
-    background-size: contain;
-  }
 
-  &--light-theme {
+  &--light {
     background: url(/src/assets/bg-mobile-light.jpg), $clr-very-light-grayish-blue;
     background-repeat: no-repeat;
     background-size: contain;
 
     @include breakpoint(small) {
       background: url(/src/assets/bg-desktop-light.jpg), $clr-very-light-grayish-blue;
+      background-repeat: no-repeat;
+      background-size: contain;
+    }
+  }
+  &--dark {
+    background: url(/src/assets/bg-mobile-dark.jpg), $clr-very-dark-blue;
+    background-repeat: no-repeat;
+    background-size: contain;
+    @include breakpoint(small) {
+      background: url(/src/assets/bg-desktop-dark.jpg), $clr-very-dark-blue;
       background-repeat: no-repeat;
       background-size: contain;
     }

@@ -7,7 +7,7 @@
       'counter btn'
       'categories categories';
     row-gap: 1rem;
-    padding: 1.1rem;
+    padding: 1.5rem;
 
     @include breakpoint(medium) {
       grid-template-areas: 'counter categories btn';
