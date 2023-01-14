@@ -1,4 +1,4 @@
-import tippy, { followCursor } from 'tippy.js';
+import tippy from 'tippy.js';
 import { $el } from '../utils/helpers';
 import View from './View';
 
@@ -43,8 +43,6 @@ class TodosListView extends View {
     tippy('.list__todo', {
       content: 'Double-click to edit',
       placement: 'right-end',
-      followCursor: true,
-      plugins: [followCursor],
       theme: 'violet',
     });
     tippy('.button--remove-todo', {
