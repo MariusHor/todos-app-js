@@ -4,17 +4,13 @@
   @extend %grid-center-y;
   grid-template-columns: 1fr 10fr 1fr;
   gap: 0.5rem;
-  padding: 0.8rem 1rem;
-  margin-bottom: 1rem;
+  padding: 0.8rem 1.5rem;
 
   &__text-input {
     background: $clr-dark-desaturated-blue;
     color: $clr-very-light-gray;
     border: none;
     outline: none;
-    font-size: small;
-    @include breakpoint(small) {
-      font-size: medium;
-    }
+    height: 100%;
   }
 }

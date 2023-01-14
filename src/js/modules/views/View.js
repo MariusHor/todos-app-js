@@ -2,8 +2,7 @@ import { $el } from '../utils/helpers';
 
 class View {
   constructor() {
-    this.parentEl = document.querySelector('#app');
-    this.input = $el('[data-todo="user-input"]');
+    this.parentEl = $el('#app');
     this.data = [];
   }
 

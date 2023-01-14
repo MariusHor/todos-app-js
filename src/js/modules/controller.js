@@ -1,4 +1,6 @@
 /* eslint-disable consistent-return */
+import { InputError } from './utils/customErrors';
+
 export default class Controller {
   constructor(model, views) {
     this.model = model;
@@ -7,28 +9,31 @@ export default class Controller {
     this.modalView = this.views.modalView;
     this.todosListView = this.views.todosListView;
     this.todoView = this.views.todoView;
-    this.bottomView = this.views.bottomView;
+    this.filtersView = this.views.filtersView;
     this.appView = this.views.appView;
     this.filter = '';
   }
 
   controlSetState = state => {
-    const { filter } = state;
-    this.filter = filter;
+    if (!state.filter) {
+      this.filter = 'all';
+    } else {
+      const { filter } = state;
+      this.filter = filter;
+    }
+    this.filtersView.setFilterActive(this.filter);
     this.render(this.filter);
-    this.bottomView.setFilterActive(this.filter);
   };
 
   controlAddTodo = todo => {
     try {
-      if (!todo.title.length) {
-        throw new Error('Todo cannot be empty!');
-      } else {
-        this.model.addTodo(todo);
-        this.render(this.filter);
-      }
+      if (!todo.title.length) throw new InputError('Todo cannot be empty!');
+      this.model.addTodo(todo);
+      this.render(this.filter);
     } catch (error) {
-      this.controlModal(error.message);
+      if (error instanceof InputError) {
+        this.controlModal(error.message);
+      } else throw error;
     }
   };
 
@@ -76,7 +81,7 @@ export default class Controller {
 
   handleCounter = () => {
     const activeTodos = this.model.getActiveTodos();
-    this.bottomView.renderCounter(activeTodos);
+    this.appView.renderCounter(activeTodos);
   };
 
   render(filter) {
@@ -92,7 +97,7 @@ export default class Controller {
     this.todoView.bindDeleteTodo(this.controlDeleteTodo);
     this.todoView.bindCheckTodo(this.controlCheckTodo);
     this.todoView.bindEditTodo(this.controlEditTodo);
-    this.bottomView.bindFilters(this.controlFilters);
-    this.bottomView.bindClearCompleted(this.controlClearCompleted);
+    this.filtersView.bindFilters(this.controlFilters);
+    this.appView.bindClearCompleted(this.controlClearCompleted);
   }
 }

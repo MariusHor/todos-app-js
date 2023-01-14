@@ -30,12 +30,12 @@
     max-width: 30rem;
     margin: 1rem;
     opacity: 0;
-    background-color: white;
+    background: #dae2f8;
     border-radius: 5px;
     box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.3);
-    transform: translateY(100%) rotateX(90deg);
-    transition: transform 0.5s cubic-bezier(0.465, 0.183, 0.153, 0.946),
-      opacity 0.4s cubic-bezier(0.465, 0.183, 0.153, 0.946);
+    position: relative;
+    transform: scale(1.1);
+    transition: opacity 250ms 250ms ease, transform 300ms 250ms ease;
   }
   &__message {
     grid-column: 2;
@@ -50,10 +50,10 @@
     align-self: baseline;
     justify-self: end;
     width: fit-content;
-    margin: 2rem;
+    margin: 1.5rem;
 
     .fa-xmark {
-      font-size: 1.4rem;
+      font-size: 1.5rem;
       @include breakpoint(small) {
         font-size: 1.7rem;
       }
@@ -63,5 +63,5 @@
 
 .visible {
   opacity: 1;
-  transform: translateY(0%) rotateX(0deg);
+  transform: scale(1);
 }

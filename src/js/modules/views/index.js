@@ -2,7 +2,7 @@ import inputView from './inputView';
 import modalView from './modalView';
 import todosListView from './todosListView';
 import todoView from './todoView';
-import bottomView from './bottomView';
+import filtersView from './filtersView';
 import appView from './appView';
 
 export default {
@@ -10,6 +10,6 @@ export default {
   modalView,
   todosListView,
   todoView,
-  bottomView,
+  filtersView,
   appView,
 };

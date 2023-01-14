@@ -1,5 +1,4 @@
 @use '../abstracts' as *;
-@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap');
 
 .sr-only {
   border: 0 !important;
@@ -16,14 +15,11 @@
 }
 
 body {
-  height: 100%;
   font-family: $ff-primary;
-  font-size: $fs-medium;
+  font-size: $fs-primary;
   color: $clr-very-dark-grayish-blue;
-  @include breakpoint(small) {
-    font-size: $fs-large;
-  }
+  letter-spacing: 0.4px;
   @include breakpoint(xlarge) {
-    font-size: $fs-large;
+    font-size: $fs-secondary;
   }
 }

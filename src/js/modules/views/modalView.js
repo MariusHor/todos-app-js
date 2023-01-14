@@ -5,6 +5,7 @@ class Modal extends View {
   constructor() {
     super();
     this.parentEl = $el('#app');
+    this.input = $el('[data-todo="user-input"]');
   }
 
   static #generateMarkup(message) {

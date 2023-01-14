@@ -3,10 +3,6 @@ import { generateId } from './utils/helpers';
 class Model {
   constructor() {
     this.localStorageKey = 'state';
-    this.state = {
-      todos: [],
-      filter: 'all',
-    };
   }
 
   #save() {
@@ -16,7 +12,7 @@ class Model {
   getState(handler) {
     this.state = JSON.parse(localStorage.getItem(this.localStorageKey)) || {
       todos: [],
-      filter: 'all',
+      filter: '',
     };
     handler(this.state);
   }

@@ -3,25 +3,11 @@
 .content {
   &__bottom {
     @extend %grid-center-y;
-    grid-template-areas:
-      'counter btn'
-      'categories categories';
-    row-gap: 1rem;
-    padding: 1.5rem;
-
-    @include breakpoint(medium) {
-      grid-template-areas: 'counter categories btn';
-    }
+    grid-template-columns: 1fr 1fr;
+    padding: 1.1rem 1.5rem;
   }
 
   &__counter {
-    grid-area: counter;
     width: fit-content;
-  }
-
-  &__filters {
-    grid-area: categories;
-    @extend %flex-row-center;
-    gap: 1rem;
   }
 }
