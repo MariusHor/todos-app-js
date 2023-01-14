@@ -1,3 +1,4 @@
+import tippy, { followCursor } from 'tippy.js';
 import { $el } from '../utils/helpers';
 import View from './View';
 
@@ -38,6 +39,26 @@ class TodosListView extends View {
     return this.data.map(item => TodosListView.#generateMarkup(item)).join('');
   }
 
+  renderTooltips() {
+    tippy('.list__todo', {
+      content: 'Double-click to edit',
+      placement: 'right-end',
+      followCursor: true,
+      plugins: [followCursor],
+      theme: 'violet',
+    });
+    tippy('.button--remove-todo', {
+      content: 'Remove todo',
+      placement: 'right-end',
+      theme: 'violet',
+    });
+    tippy('[data-todo="checkbox"]', {
+      content: 'Toggle todo',
+      placement: 'left-end',
+      theme: 'violet',
+    });
+  }
+
   render(data, filter) {
     if (!data || (Array.isArray(data) && data.length === 0)) {
       this.clear();
@@ -47,6 +68,7 @@ class TodosListView extends View {
       const markup = this.#mapTodos();
       this.clear();
       this.parentEl.insertAdjacentHTML('afterbegin', markup);
+      this.renderTooltips();
     }
   }
 }

@@ -48,8 +48,15 @@ export default class Controller {
   };
 
   controlEditTodo = (id, text) => {
-    this.model.editTodo(id, text);
-    this.render(this.filter);
+    try {
+      if (!text.length) throw new InputError('Todo cannot be empty!');
+      this.model.editTodo(id, text);
+      this.render(this.filter);
+    } catch (error) {
+      if (error instanceof InputError) {
+        this.controlModal(error.message);
+      } else throw error;
+    }
   };
 
   controlModal = message => {

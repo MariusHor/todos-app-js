@@ -1,3 +1,4 @@
+import tippy from 'tippy.js';
 import { $el } from '../utils/helpers';
 import View from './View';
 
@@ -7,6 +8,11 @@ class AppView extends View {
     this.parentEl = $el('.root');
     this.themeBtn = $el('[data-theme="switch"]');
     this.counter = $el('.content__counter');
+    tippy(this.themeBtn, {
+      content: 'Switch theme',
+      placement: 'right-end',
+      theme: 'violet',
+    });
   }
 
   switchTheme() {

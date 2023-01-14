@@ -26,10 +26,12 @@ class TodoView extends View {
   }
 
   bindEditTodo(handler) {
+    let prevData;
     this.parentEl.addEventListener('dblclick', event => {
       const textEl = event.target.closest('[data-edit="todo"]');
       if (textEl && !textEl.classList.contains('list__todo--done')) {
         textEl.contentEditable = true;
+        prevData = textEl.innerText;
       }
     });
     this.parentEl.addEventListener('focusout', event => {
@@ -39,6 +41,7 @@ class TodoView extends View {
         const data = textEl.innerText.toLowerCase().trim();
         const { id } = textEl.parentElement.dataset;
         handler(id, data);
+        if (data === '') textEl.innerText = prevData;
       }
     });
   }
