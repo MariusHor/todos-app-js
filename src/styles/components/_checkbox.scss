@@ -1,9 +1,22 @@
 @use '../abstracts' as *;
 
-.checkbox {
-  display: none;
+input[type='checkbox'] {
+  position: absolute !important;
+  overflow: hidden;
+  clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+  clip: rect(1px, 1px, 1px, 1px);
+  height: 1.55rem;
+  width: 1.55rem;
+  border-radius: 50%;
 
   & + label {
+    display: block;
+    position: relative;
+  }
+  & + label::before {
+    content: '';
+    position: relative;
+    display: inline-block;
     height: 1.55rem;
     width: 1.55rem;
     border-radius: 50%;
@@ -11,8 +24,13 @@
     cursor: pointer;
   }
 
-  &:checked + label {
+  &:checked + label::before {
     background-image: url(/src/assets/icon-check.svg), $clr-checked;
     @extend %bckg-center;
+  }
+
+  &:focus + label::before {
+    outline: #5d9dd5 solid 1px;
+    box-shadow: 0 0px 8px #5e9ed6;
   }
 }

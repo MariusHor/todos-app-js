@@ -12,12 +12,17 @@
     <div id="app">
       <div class="header">
         <h1 class="header__logo">TODO</h1>
-        <button class="button button--theme" data-theme="switch" aria-label="switch-theme"></button>
+        <button class="button button--theme" data-theme="switch" aria-label="switch theme"></button>
       </div>
       <form class="form box">
-        <input class="checkbox" data-todo="form-checkbox" type="checkbox" id="form-checkbox" />
-        <label for="form-checkbox" data-form="checkbox"></label>
-        <label class="sr-only" for="add-item"></label>
+        <input
+          data-form="checkbox-input"
+          type="checkbox"
+          name="checkbox"
+          id="form-checkbox"
+          aria-label="toggle todo"
+        />
+        <label for="form-checkbox" data-form="checkbox-label"></label>
         <input
           class="form__text-input"
           data-todo="user-input"
@@ -26,6 +31,7 @@
           id="add-item"
           placeholder="Create a new Todo..."
           name="todo"
+          aria-label="Write a new todo"
         />
         <button class="button button--submit" type="submit" aria-label="add a new todo"></button>
       </form>

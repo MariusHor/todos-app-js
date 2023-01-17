@@ -10,8 +10,12 @@ class FiltersView extends View {
 
   setFilterActive(filter) {
     const activeFilter = $el(`[data-filter="${filter}"]`);
-    this.filters.forEach(fl => fl.classList.remove('button--current'));
+    this.filters.forEach(fl => {
+      fl.classList.remove('button--current');
+      fl.removeAttribute('aria-label');
+    });
     activeFilter.classList.add('button--current');
+    activeFilter.setAttribute('aria-label', `current filter: ${filter}`);
   }
 
   bindFilters(handler) {

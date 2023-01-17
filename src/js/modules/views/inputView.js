@@ -1,4 +1,3 @@
-import tippy from 'tippy.js';
 import { $el, formatInput } from '../utils/helpers';
 import View from './View';
 
@@ -7,26 +6,22 @@ class InputView extends View {
     super();
     this.parentEl = $el('.form');
     this.input = $el('[data-todo="user-input"]');
-    this.formCheckbox = $el('[data-todo="form-checkbox"]');
-    this.renderTooltips();
-  }
-
-  renderTooltips() {
-    tippy('.button--submit', {
-      content: 'Add todo',
-      placement: 'right-end',
-      theme: 'violet',
-    });
-    tippy('.button--submit', {
-      content: 'Add todo',
-      placement: 'right-end',
-      theme: 'violet',
-    });
-    tippy('[data-form="checkbox"]', {
-      content: 'Toggle todo',
-      placement: 'left-end',
-      theme: 'violet',
-    });
+    this.formCheckbox = $el('[data-form="checkbox-input"]');
+    this.tooltips = [
+      {
+        selector: '.button--submit',
+        content: 'Add todo',
+        placement: 'right-end',
+        theme: 'violet',
+      },
+      {
+        selector: '[data-form="checkbox-label"]',
+        content: 'Toggle todo',
+        placement: 'left-end',
+        theme: 'violet',
+      },
+    ];
+    this.renderTooltips(...this.tooltips);
   }
 
   #getNewTodo() {
