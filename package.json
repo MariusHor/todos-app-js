@@ -49,6 +49,7 @@
     "webpack-dev-server": "^4.11.1"
   },
   "dependencies": {
+    "sortablejs": "^1.15.0",
     "tippy.js": "^6.3.7"
   }
 }

@@ -71,6 +71,10 @@ class TodosListView extends View {
       this.renderTooltips(...this.tooltips);
     }
   }
+
+  bindControlSortable(handler) {
+    handler(this.parentEl);
+  }
 }
 
 export default new TodosListView();

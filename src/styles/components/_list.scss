@@ -31,6 +31,10 @@
     }
   }
 
+  &__todo--dragged {
+    background-color: $clr-darker-grayish-blue;
+  }
+
   &__todo--done {
     text-decoration: line-through;
     color: $clr-dark-grayish-blue;

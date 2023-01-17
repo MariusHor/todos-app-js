@@ -1,16 +1,13 @@
 import { generateId } from './utils/helpers';
+import { LOCAL_STORAGE_KEY } from './utils/config';
 
 class Model {
-  constructor() {
-    this.localStorageKey = 'state';
-  }
-
   #save() {
-    localStorage.setItem(this.localStorageKey, JSON.stringify(this.state));
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(this.state));
   }
 
   getState(handler) {
-    this.state = JSON.parse(localStorage.getItem(this.localStorageKey)) || {
+    this.state = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY)) || {
       todos: [],
       filter: '',
     };
