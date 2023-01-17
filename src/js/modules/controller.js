@@ -112,7 +112,7 @@ export default class Controller {
       },
       animation: 750,
       delay: 300,
-      easing: 'cubic-bezier(0.38, -0.4, 0.22, 1.6)',
+      easing: 'cubic-bezier(0.38, -0.3, 0.22, 1.6)',
       chosenClass: 'list__todo--dragged',
     });
 
