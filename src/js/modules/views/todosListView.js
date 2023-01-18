@@ -49,7 +49,7 @@ class TodosListView extends View {
               data-edit="todo">${todo.title}
             </span>
             <button class="button button--remove-todo" data-remove="todo" aria-label="delete todo">
-                <i class="fa-solid fa-xmark"></i>
+              <i class="fa-solid fa-trash"></i>
             </button>
         </li>
     `;

@@ -21,6 +21,7 @@
 
   &__todo {
     width: fit-content;
+    user-select: none;
 
     &:focus-visible {
       outline: none;
@@ -39,4 +40,12 @@
     text-decoration: line-through;
     color: $clr-dark-grayish-blue;
   }
+}
+
+.sortable-ghost {
+  opacity: 0;
+}
+
+.sortable-ghost + .list__item {
+  border-top: 1px solid #303140;
 }

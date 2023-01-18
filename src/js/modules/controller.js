@@ -110,9 +110,10 @@ export default class Controller {
           localStorage.setItem(sortable.options.group.name, order.join('|'));
         },
       },
-      animation: 750,
-      delay: 300,
-      easing: 'cubic-bezier(0.38, -0.3, 0.22, 1.6)',
+      swapThreshold: 1,
+      animation: 350,
+      delay: 250,
+      easing: 'cubic-bezier(0.28, -0.3, 0.22, 1.6)',
       chosenClass: 'list__todo--dragged',
     });
 

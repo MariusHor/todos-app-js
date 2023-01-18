@@ -24,7 +24,7 @@ class Model {
       ...todo,
       id: `id_${generateId()}`,
     };
-    this.state.todos.push(newTodo);
+    this.state.todos.unshift(newTodo);
     this.#save();
   }
 
