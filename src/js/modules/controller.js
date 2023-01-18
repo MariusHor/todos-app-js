@@ -11,17 +11,14 @@ export default class Controller {
     this.filtersView = this.views.filtersView;
     this.appView = this.views.appView;
     this.tooltipView = this.views.tooltipView;
-    this.filter = '';
   }
 
   controlSetState = state => {
-    if (!state.filter) {
-      this.filter = 'all';
-    } else {
-      const { filter } = state;
-      this.filter = filter;
-    }
+    const { filter = 'all', theme = 'light' } = state;
+    this.filter = filter;
+    this.theme = theme;
     this.filtersView.setFilterActive(this.filter);
+    this.appView.handleInitialTheme(theme);
     this.render(this.filter);
   };
 
@@ -105,13 +102,17 @@ export default class Controller {
   render(filter) {
     const data = this.controlFilterData(filter);
     this.todosListView.render(data, filter);
-    this.controlCounter();
     this.todosListView.bindControlSortable(this.controlSortable);
+    this.controlCounter();
   }
 
+  controlTheme = theme => {
+    this.model.setTheme(theme);
+  };
+
   init() {
+    this.appView.switchTheme(this.controlTheme);
     this.tooltipView.renderTooltips();
-    this.appView.switchTheme();
     this.model.getState(this.controlSetState);
     this.inputView.bindAddTodo(this.controlAddTodo);
     this.todoView.bindDeleteTodo(this.controlDeleteTodo);

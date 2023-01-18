@@ -9,10 +9,19 @@ class AppView extends View {
     this.counter = $el('.content__counter');
   }
 
-  switchTheme() {
+  handleInitialTheme(theme) {
+    this.parentEl.classList.remove('root--dark', 'root--light');
+    this.parentEl.classList.toggle(`root--${theme}`);
+  }
+
+  switchTheme(handler) {
     this.themeBtn.addEventListener('click', () => {
       this.parentEl.classList.toggle('root--light');
       this.parentEl.classList.toggle('root--dark');
+
+      if (this.parentEl.matches('.root--dark')) {
+        handler('dark');
+      } else if (this.parentEl.matches('.root--light')) handler('light');
     });
   }
 

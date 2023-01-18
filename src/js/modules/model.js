@@ -7,10 +7,7 @@ class Model {
   }
 
   getState(handler) {
-    this.state = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY)) || {
-      todos: [],
-      filter: '',
-    };
+    this.state = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY)) || {};
     handler(this.state);
   }
 
@@ -19,12 +16,18 @@ class Model {
     this.#save();
   }
 
+  setTheme(theme) {
+    this.state.theme = theme;
+    this.#save();
+  }
+
   addTodo(todo) {
     const newTodo = {
       ...todo,
       id: `id_${generateId()}`,
     };
-    this.state.todos.unshift(newTodo);
+    if (!this.state.todos) this.state.todos = [];
+    this.state.todos?.unshift(newTodo);
     this.#save();
   }
 
@@ -48,12 +51,12 @@ class Model {
   }
 
   getActiveTodos() {
-    this.active = this.state.todos.filter(todo => !todo.checked);
+    this.active = this.state.todos?.filter(todo => !todo.checked) ?? [];
     return this.active;
   }
 
   getCompletedTodos() {
-    this.completed = this.state.todos.filter(todo => todo.checked);
+    this.completed = this.state.todos?.filter(todo => todo.checked) ?? [];
     return this.completed;
   }
 

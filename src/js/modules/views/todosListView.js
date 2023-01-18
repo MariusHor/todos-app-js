@@ -49,7 +49,6 @@ class TodosListView extends View {
       const markup = this.#mapTodos();
       this.clear();
       this.parentEl.insertAdjacentHTML('afterbegin', markup);
-      //
       tooltipView.renderTooltips();
     }
   }
