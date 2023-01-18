@@ -25,7 +25,7 @@
         <label for="form-checkbox" data-form="checkbox-label"></label>
         <input
           class="form__text-input"
-          data-todo="user-input"
+          data-form="user-input"
           type="text"
           autocomplete="off"
           id="add-item"
@@ -33,7 +33,13 @@
           name="todo"
           aria-label="Write a new todo"
         />
-        <button class="button button--submit" type="submit" aria-label="add a new todo"></button>
+        <button
+          class="button button--submit"
+          type="submit"
+          data-form="submit"
+          aria-label="add a new todo"
+          disabled
+        ></button>
       </form>
       <div class="filters box">
         <button class="button button--filter" data-filter="all">All</button>

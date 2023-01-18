@@ -5,9 +5,13 @@ input[type='checkbox'] {
   overflow: hidden;
   clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
   clip: rect(1px, 1px, 1px, 1px);
-  height: 1.55rem;
-  width: 1.55rem;
+  height: 1.45rem;
+  width: 1.45rem;
   border-radius: 50%;
+  @include breakpoint(small) {
+    height: 1.55rem;
+    width: 1.55rem;
+  }
 
   & + label {
     display: block;
@@ -17,13 +21,17 @@ input[type='checkbox'] {
     content: '';
     position: relative;
     display: inline-block;
-    height: 1.55rem;
-    width: 1.55rem;
+    height: 1.45rem;
+    width: 1.45rem;
     border-radius: 50%;
     border: solid 1px rgb(80 81 90);
     cursor: pointer;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
       rgba(10, 37, 64, 0.25) 0px -2px 6px 0px inset;
+    @include breakpoint(small) {
+      height: 1.55rem;
+      width: 1.55rem;
+    }
   }
 
   &:checked + label::before {

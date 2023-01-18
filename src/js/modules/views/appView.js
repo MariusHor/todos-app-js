@@ -7,15 +7,6 @@ class AppView extends View {
     this.parentEl = $el('.root');
     this.themeBtn = $el('[data-theme="switch"]');
     this.counter = $el('.content__counter');
-    this.tooltips = [
-      {
-        selector: this.themeBtn,
-        content: 'Switch theme',
-        placement: 'right-end',
-        theme: 'violet',
-      },
-    ];
-    this.renderTooltips(...this.tooltips);
   }
 
   switchTheme() {

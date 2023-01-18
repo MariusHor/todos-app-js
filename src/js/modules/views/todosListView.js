@@ -1,5 +1,6 @@
 import { $el } from '../utils/helpers';
 import View from './View';
+import tooltipView from './tooltipView';
 
 class TodosListView extends View {
   constructor() {
@@ -10,26 +11,6 @@ class TodosListView extends View {
       active: 'There are no active todos.',
       completed: 'There are no completed todos yet.',
     };
-    this.tooltips = [
-      {
-        selector: '.list__todo--active',
-        content: 'Double-click to edit',
-        placement: 'right-end',
-        theme: 'violet',
-      },
-      {
-        selector: '.button--remove-todo',
-        content: 'Remove todo',
-        placement: 'right-end',
-        theme: 'violet',
-      },
-      {
-        selector: '[data-todo="checkbox"]',
-        content: 'Toggle todo',
-        placement: 'left-end',
-        theme: 'violet',
-      },
-    ];
   }
 
   static #generateMarkup(todo) {
@@ -62,18 +43,29 @@ class TodosListView extends View {
   render(data, filter) {
     if (!data || (Array.isArray(data) && data.length === 0)) {
       this.clear();
-      this.renderError(this.messages[filter]);
+      this.renderEmptyFilter(this.messages[filter]);
     } else {
       this.data = data;
       const markup = this.#mapTodos();
       this.clear();
       this.parentEl.insertAdjacentHTML('afterbegin', markup);
-      this.renderTooltips(...this.tooltips);
+      //
+      tooltipView.renderTooltips();
     }
   }
 
   bindControlSortable(handler) {
     handler(this.parentEl);
+  }
+
+  renderEmptyFilter(message) {
+    const markup = `
+      <li class="list__empty">
+          <p>${message}</p>
+      </li>
+    `;
+    this.clear();
+    this.parentEl.insertAdjacentHTML('afterbegin', markup);
   }
 }
 

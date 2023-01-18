@@ -16,7 +16,7 @@ class TodoView extends View {
     });
   }
 
-  bindCheckTodo(handler) {
+  bindToggleTodo(handler) {
     this.parentEl.addEventListener('click', event => {
       const checkbox = event.target.closest('[data-toggle="todo"]');
       if (!checkbox) return;

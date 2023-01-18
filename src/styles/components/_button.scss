@@ -36,14 +36,20 @@
     &:active {
       transform: scale(0.9);
     }
+    &:disabled {
+      opacity: 0.4;
+    }
   }
 
   &--remove-todo {
     display: flex;
     justify-self: flex-end;
     width: fit-content;
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     color: $clr-dark-grayish-blue;
+    @include breakpoint(small) {
+      font-size: 1.3rem;
+    }
 
     &:hover,
     &:focus {

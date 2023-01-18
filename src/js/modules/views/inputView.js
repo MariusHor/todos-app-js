@@ -5,23 +5,24 @@ class InputView extends View {
   constructor() {
     super();
     this.parentEl = $el('.form');
-    this.input = $el('[data-todo="user-input"]');
+    this.input = $el('[data-form="user-input"]');
     this.formCheckbox = $el('[data-form="checkbox-input"]');
-    this.tooltips = [
-      {
-        selector: '.button--submit',
-        content: 'Add todo',
-        placement: 'right-end',
-        theme: 'violet',
-      },
-      {
-        selector: '[data-form="checkbox-label"]',
-        content: 'Toggle todo',
-        placement: 'left-end',
-        theme: 'violet',
-      },
-    ];
-    this.renderTooltips(...this.tooltips);
+    this.submitBtn = $el('.button--submit');
+    this.#handleInputEvent();
+  }
+
+  #handleInputEvent() {
+    this.input.addEventListener('keyup', () => {
+      this.#handleEmptyInput();
+    });
+  }
+
+  #handleEmptyInput() {
+    if (!this.input.value.trim().length) {
+      this.submitBtn.setAttribute('disabled', '');
+    } else {
+      this.submitBtn.removeAttribute('disabled');
+    }
   }
 
   #getNewTodo() {
@@ -34,9 +35,9 @@ class InputView extends View {
   bindAddTodo(handler) {
     this.parentEl.addEventListener('submit', event => {
       event.preventDefault();
+      this.#handleEmptyInput();
       const todo = this.#getNewTodo();
       handler(todo);
-      if (!todo.length) return;
       this.focusInput();
     });
   }

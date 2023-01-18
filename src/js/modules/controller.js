@@ -1,17 +1,16 @@
 /* eslint-disable consistent-return */
 import Sortable from 'sortablejs';
-import { InputError } from './utils/customErrors';
 
 export default class Controller {
   constructor(model, views) {
     this.model = model;
     this.views = views;
     this.inputView = this.views.inputView;
-    this.modalView = this.views.modalView;
     this.todosListView = this.views.todosListView;
     this.todoView = this.views.todoView;
     this.filtersView = this.views.filtersView;
     this.appView = this.views.appView;
+    this.tooltipView = this.views.tooltipView;
     this.filter = '';
   }
 
@@ -27,15 +26,8 @@ export default class Controller {
   };
 
   controlAddTodo = todo => {
-    try {
-      if (!todo.title.length) throw new InputError('Todo cannot be empty!');
-      this.model.addTodo(todo);
-      this.render(this.filter);
-    } catch (error) {
-      if (error instanceof InputError) {
-        this.controlModal(error.message);
-      } else throw error;
-    }
+    this.model.addTodo(todo);
+    this.render(this.filter);
   };
 
   controlDeleteTodo = id => {
@@ -43,26 +35,14 @@ export default class Controller {
     this.render(this.filter);
   };
 
-  controlCheckTodo = id => {
+  controlToggleTodo = id => {
     this.model.toggleTodo(id);
     this.render(this.filter);
   };
 
   controlEditTodo = (id, text) => {
-    try {
-      if (!text.length) throw new InputError('Todo cannot be empty!');
-      this.model.editTodo(id, text);
-      this.render(this.filter);
-    } catch (error) {
-      if (error instanceof InputError) {
-        this.controlModal(error.message);
-      } else throw error;
-    }
-  };
-
-  controlModal = message => {
-    this.modalView.showModal(message);
-    this.modalView.handleEvents();
+    this.model.editTodo(id, text);
+    this.render(this.filter);
   };
 
   controlFilters = filter => {
@@ -117,7 +97,7 @@ export default class Controller {
       chosenClass: 'list__todo--dragged',
     });
 
-  handleCounter = () => {
+  controlCounter = () => {
     const activeTodos = this.model.getActiveTodos();
     this.appView.renderCounter(activeTodos);
   };
@@ -125,16 +105,17 @@ export default class Controller {
   render(filter) {
     const data = this.controlFilterData(filter);
     this.todosListView.render(data, filter);
-    this.handleCounter();
+    this.controlCounter();
     this.todosListView.bindControlSortable(this.controlSortable);
   }
 
   init() {
+    this.tooltipView.renderTooltips();
     this.appView.switchTheme();
     this.model.getState(this.controlSetState);
     this.inputView.bindAddTodo(this.controlAddTodo);
     this.todoView.bindDeleteTodo(this.controlDeleteTodo);
-    this.todoView.bindCheckTodo(this.controlCheckTodo);
+    this.todoView.bindToggleTodo(this.controlToggleTodo);
     this.todoView.bindEditTodo(this.controlEditTodo);
     this.filtersView.bindFilters(this.controlFilters);
     this.appView.bindClearCompleted(this.controlClearCompleted);
