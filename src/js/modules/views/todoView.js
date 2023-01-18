@@ -38,10 +38,13 @@ class TodoView extends View {
       const textEl = event.target.closest('[data-edit="todo"]');
       if (textEl) {
         textEl.contentEditable = false;
-        const data = textEl.innerText.toLowerCase().trim();
+        const data = textEl.innerText.trim();
         const { id } = textEl.parentElement.dataset;
-        handler(id, data);
-        if (data === '') textEl.innerText = prevData;
+        if (!data.length) {
+          textEl.innerText = prevData;
+        } else {
+          handler(id, data);
+        }
       }
     });
   }

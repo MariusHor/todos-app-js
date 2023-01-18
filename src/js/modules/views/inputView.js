@@ -35,10 +35,10 @@ class InputView extends View {
   bindAddTodo(handler) {
     this.parentEl.addEventListener('submit', event => {
       event.preventDefault();
-      this.#handleEmptyInput();
       const todo = this.#getNewTodo();
       handler(todo);
       this.focusInput();
+      this.#handleEmptyInput();
     });
   }
 }
