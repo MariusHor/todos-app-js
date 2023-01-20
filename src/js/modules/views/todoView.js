@@ -7,7 +7,7 @@ class TodoView extends View {
     this.parentEl = $el('.list');
   }
 
-  bindDeleteTodo(handler) {
+  handleDeleteTodo(handler) {
     this.parentEl.addEventListener('click', event => {
       const deleteBtn = event.target.closest('[data-remove="todo"]');
       if (!deleteBtn) return;
@@ -16,7 +16,7 @@ class TodoView extends View {
     });
   }
 
-  bindToggleTodo(handler) {
+  handleToggleTodo(handler) {
     this.parentEl.addEventListener('click', event => {
       const checkbox = event.target.closest('[data-toggle="todo"]');
       if (!checkbox) return;
@@ -25,7 +25,7 @@ class TodoView extends View {
     });
   }
 
-  bindEditTodo(handler) {
+  handleEditTodo(handler) {
     let prevData;
     this.parentEl.addEventListener('dblclick', event => {
       const textEl = event.target.closest('[data-edit="todo"]');

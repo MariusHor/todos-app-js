@@ -14,7 +14,7 @@ class AppView extends View {
     this.parentEl.classList.toggle(`root--${theme}`);
   }
 
-  switchTheme(handler) {
+  handleSwitchTheme(handler) {
     this.themeBtn.addEventListener('click', () => {
       this.parentEl.classList.toggle('root--light');
       this.parentEl.classList.toggle('root--dark');
@@ -25,7 +25,7 @@ class AppView extends View {
     });
   }
 
-  bindClearCompleted(handler) {
+  handleClearCompleted(handler) {
     this.parentEl.addEventListener('click', event => {
       const clearBtn = event.target.closest('[data-remove="all"]');
       if (!clearBtn) return;

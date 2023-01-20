@@ -40,24 +40,7 @@ class TodosListView extends View {
     return this.data.map(item => TodosListView.#generateMarkup(item)).join('');
   }
 
-  render(data, filter) {
-    if (!data || (Array.isArray(data) && data.length === 0)) {
-      this.clear();
-      this.renderEmptyFilter(this.messages[filter]);
-    } else {
-      this.data = data;
-      const markup = this.#mapTodos();
-      this.clear();
-      this.parentEl.insertAdjacentHTML('afterbegin', markup);
-      tooltipView.renderTooltips();
-    }
-  }
-
-  bindControlSortable(handler) {
-    handler(this.parentEl);
-  }
-
-  renderEmptyFilter(message) {
+  #renderEmptyFilter(message) {
     const markup = `
       <li class="list__empty">
           <p>${message}</p>
@@ -65,6 +48,23 @@ class TodosListView extends View {
     `;
     this.clear();
     this.parentEl.insertAdjacentHTML('afterbegin', markup);
+  }
+
+  handleControlSortable(handler) {
+    handler(this.parentEl);
+  }
+
+  render(data, filter) {
+    if (!data || (Array.isArray(data) && data.length === 0)) {
+      this.clear();
+      this.#renderEmptyFilter(this.messages[filter]);
+    } else {
+      this.data = data;
+      const markup = this.#mapTodos();
+      this.clear();
+      this.parentEl.insertAdjacentHTML('afterbegin', markup);
+      tooltipView.renderTooltips();
+    }
   }
 }
 

@@ -13,40 +13,40 @@ export default class Controller {
     this.tooltipView = this.views.tooltipView;
   }
 
-  controlSetState = state => {
+  controlSetState(state) {
     const { filter = 'all', theme = 'light' } = state;
     this.filter = filter;
     this.theme = theme;
     this.filtersView.setFilterActive(this.filter);
     this.appView.handleInitialTheme(theme);
     this.render(this.filter);
-  };
+  }
 
-  controlAddTodo = todo => {
+  controlAddTodo(todo) {
     this.model.addTodo(todo);
     this.render(this.filter);
-  };
+  }
 
-  controlDeleteTodo = id => {
+  controlDeleteTodo(id) {
     this.model.deleteTodo(id);
     this.render(this.filter);
-  };
+  }
 
-  controlToggleTodo = id => {
+  controlToggleTodo(id) {
     this.model.toggleTodo(id);
     this.render(this.filter);
-  };
+  }
 
-  controlEditTodo = (id, text) => {
+  controlEditTodo(id, text) {
     this.model.editTodo(id, text);
     this.render(this.filter);
-  };
+  }
 
-  controlFilters = filter => {
+  controlFilters(filter) {
     this.filter = filter;
     this.model.setFilter(this.filter);
     this.render(this.filter);
-  };
+  }
 
   controlFilterData(filter) {
     switch (filter) {
@@ -59,12 +59,12 @@ export default class Controller {
     }
   }
 
-  controlClearCompleted = () => {
+  controlClearCompleted() {
     this.model.removeCompleted();
     this.render(this.filter);
-  };
+  }
 
-  controlSortable = selector =>
+  controlSortable(selector) {
     Sortable.create(selector, {
       group: 'sorted-todos',
       store: {
@@ -93,32 +93,33 @@ export default class Controller {
       easing: 'cubic-bezier(0.28, -0.3, 0.22, 1.6)',
       chosenClass: 'list__todo--dragged',
     });
+  }
 
-  controlCounter = () => {
+  controlCounter() {
     const activeTodos = this.model.getActiveTodos();
     this.appView.renderCounter(activeTodos);
-  };
+  }
 
   render(filter) {
     const data = this.controlFilterData(filter);
     this.todosListView.render(data, filter);
-    this.todosListView.bindControlSortable(this.controlSortable);
+    this.todosListView.handleControlSortable(this.controlSortable);
     this.controlCounter();
   }
 
-  controlTheme = theme => {
+  controlTheme(theme) {
     this.model.setTheme(theme);
-  };
+  }
 
   init() {
-    this.appView.switchTheme(this.controlTheme);
+    this.appView.handleSwitchTheme(this.controlTheme.bind(this));
     this.tooltipView.renderTooltips();
-    this.model.getState(this.controlSetState);
-    this.inputView.bindAddTodo(this.controlAddTodo);
-    this.todoView.bindDeleteTodo(this.controlDeleteTodo);
-    this.todoView.bindToggleTodo(this.controlToggleTodo);
-    this.todoView.bindEditTodo(this.controlEditTodo);
-    this.filtersView.bindFilters(this.controlFilters);
-    this.appView.bindClearCompleted(this.controlClearCompleted);
+    this.model.getState(this.controlSetState.bind(this));
+    this.inputView.handleAddTodo(this.controlAddTodo.bind(this));
+    this.todoView.handleDeleteTodo(this.controlDeleteTodo.bind(this));
+    this.todoView.handleToggleTodo(this.controlToggleTodo.bind(this));
+    this.todoView.handleEditTodo(this.controlEditTodo.bind(this));
+    this.filtersView.handleFilters(this.controlFilters.bind(this));
+    this.appView.handleClearCompleted(this.controlClearCompleted.bind(this));
   }
 }

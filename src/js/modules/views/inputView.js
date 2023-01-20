@@ -11,13 +11,7 @@ class InputView extends View {
     this.#handleInputEvent();
   }
 
-  #handleInputEvent() {
-    this.input.addEventListener('keyup', () => {
-      this.#handleEmptyInput();
-    });
-  }
-
-  #handleEmptyInput() {
+  #handleSubmitBtn() {
     if (!this.input.value.trim().length) {
       this.submitBtn.setAttribute('disabled', '');
     } else {
@@ -32,13 +26,19 @@ class InputView extends View {
     return { title, checked };
   }
 
-  bindAddTodo(handler) {
+  #handleInputEvent() {
+    this.input.addEventListener('keyup', () => {
+      this.#handleSubmitBtn();
+    });
+  }
+
+  handleAddTodo(handler) {
     this.parentEl.addEventListener('submit', event => {
       event.preventDefault();
       const todo = this.#getNewTodo();
       handler(todo);
       this.focusInput();
-      this.#handleEmptyInput();
+      this.#handleSubmitBtn();
     });
   }
 }

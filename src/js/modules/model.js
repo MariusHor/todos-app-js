@@ -27,7 +27,7 @@ class Model {
       id: `id_${generateId()}`,
     };
     if (!this.state.todos) this.state.todos = [];
-    this.state.todos?.unshift(newTodo);
+    this.state.todos.unshift(newTodo);
     this.#save();
   }
 

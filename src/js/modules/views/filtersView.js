@@ -18,7 +18,7 @@ class FiltersView extends View {
     activeFilter.setAttribute('aria-label', `current filter: ${filter}`);
   }
 
-  bindFilters(handler) {
+  handleFilters(handler) {
     this.parentEl.addEventListener('click', event => {
       const element = event.target.closest('[data-filter]');
       if (!element) return;
