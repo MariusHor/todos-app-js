@@ -6,12 +6,13 @@ class TodosListView extends View {
   constructor() {
     super();
     this.parentEl = $el('.list');
-    this.messages = {
-      all: 'Please add a new todo!',
-      active: 'There are no active todos.',
-      completed: 'There are no completed todos yet.',
-    };
   }
+
+  #messages = {
+    all: 'Please add a new todo!',
+    active: 'There are no active todos.',
+    completed: 'There are no completed todos yet.',
+  };
 
   static #generateMarkup(todo) {
     return `
@@ -57,7 +58,7 @@ class TodosListView extends View {
   render(data, filter) {
     if (!data || (Array.isArray(data) && data.length === 0)) {
       this.clear();
-      this.#renderEmptyFilter(this.messages[filter]);
+      this.#renderEmptyFilter(this.#messages[filter]);
     } else {
       this.data = data;
       const markup = this.#mapTodos();

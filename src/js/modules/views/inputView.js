@@ -6,22 +6,24 @@ class InputView extends View {
     super();
     this.parentEl = $el('.form');
     this.input = $el('[data-form="user-input"]');
-    this.formCheckbox = $el('[data-form="checkbox-input"]');
-    this.submitBtn = $el('.button--submit');
     this.#handleInputEvent();
   }
 
+  #formCheckbox = $el('[data-form="checkbox-input"]');
+
+  #submitBtn = $el('.button--submit');
+
   #handleSubmitBtn() {
-    if (!this.input.value.trim().length) {
-      this.submitBtn.setAttribute('disabled', '');
+    if (!formatInput(this.input.value).length) {
+      this.#submitBtn.setAttribute('disabled', '');
     } else {
-      this.submitBtn.removeAttribute('disabled');
+      this.#submitBtn.removeAttribute('disabled');
     }
   }
 
   #getNewTodo() {
     const title = formatInput(this.input.value);
-    const { checked } = this.formCheckbox;
+    const { checked } = this.#formCheckbox;
     this.input.value = '';
     return { title, checked };
   }

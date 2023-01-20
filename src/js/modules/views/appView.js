@@ -5,9 +5,11 @@ class AppView extends View {
   constructor() {
     super();
     this.parentEl = $el('.root');
-    this.themeBtn = $el('[data-theme="switch"]');
-    this.counter = $el('.content__counter');
   }
+
+  #themeBtn = $el('[data-theme="switch"]');
+
+  #counter = $el('.content__counter');
 
   handleInitialTheme(theme) {
     this.parentEl.classList.remove('root--dark', 'root--light');
@@ -15,7 +17,7 @@ class AppView extends View {
   }
 
   handleSwitchTheme(handler) {
-    this.themeBtn.addEventListener('click', () => {
+    this.#themeBtn.addEventListener('click', () => {
       this.parentEl.classList.toggle('root--light');
       this.parentEl.classList.toggle('root--dark');
 
@@ -34,7 +36,7 @@ class AppView extends View {
   }
 
   renderCounter(data) {
-    this.counter.textContent = `${data.length} ${data.length === 1 ? 'todo' : 'todos'} left`;
+    this.#counter.textContent = `${data.length} ${data.length === 1 ? 'todo' : 'todos'} left`;
   }
 }
 
