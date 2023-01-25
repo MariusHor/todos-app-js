@@ -1,7 +1,7 @@
-import todosModel from './modules/model';
-import views from './modules/views';
+import model from './modules/model';
+import views from './modules/views/View';
 import Controller from './modules/controller';
 
-const app = new Controller(todosModel, views);
+const app = new Controller(model, views);
 
 app.init();

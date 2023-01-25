@@ -13,17 +13,7 @@
 body {
   font-family: $ff-primary;
   font-size: $fs-primary;
-  color: $clr-very-dark-grayish-blue;
-  letter-spacing: 0.4px;
   @include breakpoint(xlarge) {
     font-size: $fs-secondary;
   }
-}
-
-.tippy-box[data-theme~='violet'] {
-  background-color: #683de3;
-}
-.tippy-box > .tippy-arrow {
-  border-color: #683de3;
-  color: #683de3;
 }

@@ -5,54 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="assets/favicon-16x16.png" type="image/png" />
-    <title>Todos App Vanilla JS</title>
+    <title>Dictionary Web App</title>
     <script src="https://kit.fontawesome.com/d73036c961.js" crossorigin="anonymous"></script>
   </head>
-  <body class="root">
-    <div id="app">
-      <div class="header">
-        <a href="https://todos-app-js-p01.netlify.app/"> <h1 class="header__logo">TODO</h1></a>
-        <button class="button button--theme" data-theme="switch" aria-label="switch theme"></button>
-      </div>
-      <form class="form box">
-        <input
-          data-form="checkbox-input"
-          type="checkbox"
-          name="checkbox"
-          id="form-checkbox"
-          aria-label="toggle todo"
-        />
-        <label for="form-checkbox" data-form="checkbox-label"></label>
-        <input
-          class="form__text-input"
-          data-form="user-input"
-          type="text"
-          autocomplete="off"
-          id="add-item"
-          placeholder="Create a new Todo..."
-          name="todo"
-          aria-label="Write a new todo"
-        />
-        <button
-          class="button button--submit"
-          type="submit"
-          data-form="submit"
-          aria-label="add a new todo"
-          disabled
-        ></button>
-      </form>
-      <div class="filters box">
-        <button class="button button--filter" data-filter="all">All</button>
-        <button class="button button--filter" data-filter="active">Active</button>
-        <button class="button button--filter" data-filter="completed">Completed</button>
-      </div>
-      <div class="content box">
-        <ul class="list"></ul>
-        <div class="content__bottom">
-          <span class="content__counter">0 items left</span>
-          <button class="button button--clear-completed" data-remove="all">Clear completed</button>
-        </div>
-      </div>
-    </div>
+  <body>
+    <div id="root"></div>
   </body>
 </html>
