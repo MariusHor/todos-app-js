@@ -1,7 +1,7 @@
 {
-  "name": "dictionary-web-app",
+  "name": "todos-app-js",
   "version": "1.0.0",
-  "description": "",
+  "description": "a simple todos app made with vanilla javascript",
   "main": "index.js",
   "scripts": {
     "dev": "webpack serve --mode development",
@@ -47,5 +47,9 @@
     "webpack-bundle-analyzer": "^4.7.0",
     "webpack-cli": "^5.0.0",
     "webpack-dev-server": "^4.11.1"
+  },
+  "dependencies": {
+    "sortablejs": "^1.15.0",
+    "tippy.js": "^6.3.7"
   }
 }

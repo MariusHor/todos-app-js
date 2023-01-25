@@ -1,0 +1,13 @@
+@use '../abstracts' as *;
+
+.content {
+  &__bottom {
+    @extend %grid-center-y;
+    grid-template-columns: 1fr 1fr;
+    padding: 1.1rem 1.5rem;
+  }
+
+  &__counter {
+    width: fit-content;
+  }
+}

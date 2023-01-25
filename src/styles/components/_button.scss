@@ -1,0 +1,96 @@
+@use '../abstracts' as *;
+
+.button {
+  letter-spacing: inherit;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+  @extend %bckg-contain-center;
+
+  &:hover {
+    color: $clr-light-grayish-blue-hover;
+  }
+
+  &--theme {
+    height: 1.875rem;
+    width: 1.875rem;
+    background-image: url(/src/assets/icon-sun.svg);
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+
+  &--theme-light {
+    background-image: url(/src/assets/icon-moon.svg);
+  }
+
+  &--submit {
+    background-image: url(/src/assets/plus-solid.svg);
+    height: 1.875rem;
+    width: 1.875rem;
+    justify-self: end;
+
+    &:hover {
+      opacity: 0.7;
+    }
+    &:active {
+      transform: scale(0.9);
+    }
+    &:disabled {
+      opacity: 0.4;
+    }
+  }
+
+  &--remove-todo {
+    display: flex;
+    justify-self: flex-end;
+    width: fit-content;
+    font-size: 1.2rem;
+    color: $clr-dark-grayish-blue;
+    @include breakpoint(small) {
+      font-size: 1.3rem;
+    }
+
+    &:hover,
+    &:focus {
+      color: $clr-light-grayish-blue-hover;
+    }
+  }
+
+  &--clear-completed {
+    justify-self: end;
+    background: #683de3;
+    color: $clr-light-grayish-blue;
+    border-radius: 5px;
+    padding: 0.6rem 1rem;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+      rgba(10, 37, 64, 0.25) 0px -2px 6px 0px inset;
+    @include breakpoint(small) {
+      padding: 0.65rem 1rem;
+    }
+    &:hover {
+      background: #7e59e2 !important;
+      color: $clr-light-grayish-blue-hover;
+    }
+  }
+
+  &--current {
+    background: #683de3 !important;
+  }
+
+  &--filter {
+    color: $clr-light-grayish-blue;
+    background: $clr-darker-grayish-blue;
+    border-radius: 5px;
+    padding: 0.6rem 0;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+      rgba(10, 37, 64, 0.25) 0px -2px 6px 0px inset;
+    @include breakpoint(small) {
+      padding: 0.65rem 0;
+    }
+    &:hover {
+      background: #7e59e2 !important;
+      color: $clr-light-grayish-blue-hover;
+    }
+  }
+}

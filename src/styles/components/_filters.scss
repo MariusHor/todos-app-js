@@ -1,0 +1,10 @@
+@use '../abstracts' as *;
+
+.filters {
+  border-radius: 5px;
+  grid-area: categories;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  padding: 1.1rem 1.5rem;
+  gap: 1rem;
+}
