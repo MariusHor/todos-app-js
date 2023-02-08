@@ -90,7 +90,7 @@ I will continue to research and implement variations of the Model View \* archit
 
 ### Useful resources
 
-- [Dictionary web app challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/dictionary-web-app-h5wwnyuKFL) - This gave me the basic styling guidelines to follow while building this project which I used as a starting point on which I built upon where I felt that it was needed.
+- [Todo app challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/todo-app-Su1_KokOW) - This gave me the basic styling guidelines to follow while building this project which I used as a starting point on which I built upon where I felt that it was needed.
 
 ## Author
 
